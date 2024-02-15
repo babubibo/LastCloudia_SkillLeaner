@@ -1,0 +1,141 @@
+p {
+    color: cornflowerblue;
+    font-size: 15px;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+    padding-bottom: 2px;
+}
+
+
+
+ul,
+li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+table {
+    width: 100%;
+    margin: 0px auto;
+    margin-bottom: 1.5em;
+    padding: 0;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+td {
+
+    border: 1px solid black;
+    text-align: center;
+}
+
+th {
+    border: 1px solid black;
+    text-align: center;
+}
+
+tr {
+
+    display: table-row;
+}
+
+button {
+    border-radius: 5px;
+    border-width: 1px;
+    width: 20px;
+    height: 20px;
+    margin: 0 auto;
+    font-size: 15px;
+    padding-left: 5px;
+}
+
+button:hover {
+    color: #003C9D;
+    background-color: #fff;
+    border: 2px #003C9D solid;
+}
+
+.ark_border {
+
+    border: 1px solid black;
+}
+
+.aligncenter {
+    display: block;
+    margin: 0px auto;
+}
+
+.textleft {
+    text-align: left;
+}
+
+#allSkills {
+    /*margin: auto;*/
+    width: 50%;
+}
+
+.arktable {
+    display: flex;
+}
+
+#bg_skill {
+    padding-top: 1px;
+    text-align: center;
+    height: 18px;
+    width: 15px;
+    background: #de7307;
+    display: inline-block;
+    border-radius: 3px;
+    padding: 1px 2px;
+    margin-top: 3px;
+    color: #fff;
+
+}
+
+.skillName {
+    height: 20px;
+    vertical-align: top;
+    font-size: 15px;
+    text-align: left;
+    padding: 1px 1px;
+    margin-bottom: 1px;
+}
+
+#selectedSkills {
+    width: 50%;
+    margin-left: 10px;
+    height: 10px;
+}
+
+#selectedSkills td {
+
+    margin-top: 3px;
+    vertical-align: top;
+    text-align: left;
+}
+
+.highlight {
+    background-color: yellow;
+}
+
+.searchAndSum {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#searchInput {
+
+    flex: 1;
+}
+
+#totalSc {
+    width: 30%;
+    flex: 1;
+}

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>圖片庫</title>
+    <meta http-eqiuv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/app.css">
+
+    <script src="static/js/main.js"></script>
+</head>
+
+<body>
+    <div class="searchAndSum">
+        <div>
+            <input type="text" id="searchInput" placeholder="搜尋聖物名稱或技能名稱">
+        </div>
+        <script>
+            // 取得搜尋框資料
+            var searchInput = document.getElementById("searchInput");
+
+            // 添加事件監聽器
+            searchInput.addEventListener("input", function () {
+                var keyword = searchInput.value.trim().toLowerCase(); // keyword=搜尋框資料去空白和變小寫
+                var rows = document.querySelectorAll("#allSkills tbody tr"); // 用選擇器讓row=所有聖物
+
+                //所有聖物列進行判斷
+                rows.forEach(function (row) {
+                    var arkName = row.querySelector("td p").textContent.toLowerCase(); // 聖物名稱
+                    var skillNameElements = row.querySelectorAll(".skillName span"); // 所有聖物的全部技能列
+                    var found = false; // 判斷是否符合關鍵字
+
+                    // 全部技能列逐一判斷
+                    skillNameElements.forEach(function (span) {
+                        var skillName = span.textContent.toLowerCase();
+                        // 如果技能名稱包含關鍵字, 則判定找到並標記
+                        if (skillName.includes(keyword)) {
+                            found = true;
+                            span.classList.add("highlight");
+                        }
+                        // 如果關鍵字為空, 則去除所有標記
+                        if (keyword === '') {
+                            span.classList.remove("highlight");
+                        }
+                    });
+                    // 匹配聖物名稱或技能名稱
+                    if (arkName.includes(keyword) || found) {
+                        row.style.display = "table-row";
+                    } else {
+                        row.style.display = "none";
+
+                    }
+                });
+
+            });
+        </script>
+        <div>合計SC: <span id="totalSc"></span></div>
+    </div>
+    <div class="arktable">
+        <table id="allSkills">
+            <thead>
+                <tr>
+                    <th width="150px">聖物</th>
+                    <th width="30%">特性</th>
+                    <th width="50px">sc</th>
+                    <th>習得技能</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% images.forEach(ark=> { %>
+
+                    <tr height="150px">
+                        <td>
+                            <a href="<%=ark.ark_image%>"><img src="<%= ark.ark_image%>" alt="<%= ark.ark_name%>"
+                                    class="aligncenter">
+                                <p class="aligncenter">
+                                    <%= ark.ark_name%>
+                                </p>
+                            </a>
+                        </td>
+                        <td>
+                            <p class="textleft">
+                                <%- ark.ark_skill %>
+                            </p>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <% if(ark.ark_s1_type==='magic' ) {%>
+                                        <span id="bg_skill" style="background-color: blueviolet;">
+                                            <%= ark.skill_sc_s1%>
+                                        </span>
+                                        <%} else if(ark.ark_s1_type==='skill' ) {%>
+                                            <span id="bg_skill">
+                                                <%= ark.skill_sc_s1%>
+                                            </span>
+                                            <% }else{ %>
+                                                <span id="bg_skill" style="background-color: white;">
+                                                    <%= ark.skill_sc_s1%>
+                                                </span>
+                                                <%}%>
+                                </li>
+                                <li>
+                                    <% if(ark.ark_s2_type==='magic' ) {%>
+                                        <span id="bg_skill" style="background-color: blueviolet;">
+                                            <%= ark.skill_sc_s2%>
+                                        </span>
+                                        <%} else if(ark.ark_s2_type==='skill' ) {%>
+                                            <span id="bg_skill">
+                                                <%= ark.skill_sc_s2%>
+                                            </span>
+                                            <% }else{ %>
+                                                <span id="bg_skill" style="background-color: white;">
+                                                    <%= ark.skill_sc_s2%>
+                                                </span>
+                                                <%}%>
+                                </li>
+                                <li>
+                                    <% if(ark.ark_s3_type==='magic' ) {%>
+                                        <span id="bg_skill" style="background-color: blueviolet;">
+                                            <%= ark.skill_sc_s3%>
+                                        </span>
+                                        <%} else if(ark.ark_s3_type==='skill' ) {%>
+                                            <span id="bg_skill">
+                                                <%= ark.skill_sc_s3%>
+                                            </span>
+                                            <% }else{ %>
+                                                <span id="bg_skill" style="background-color: white;">
+                                                    <%= ark.skill_sc_s3%>
+                                                </span>
+                                                <%}%>
+                                </li>
+                                <li>
+                                    <% if(ark.ark_s4_type==='magic' ) {%>
+                                        <span id="bg_skill" style="background-color: blueviolet;">
+                                            <%= ark.skill_sc_s4%>
+                                        </span>
+                                        <%} else if(ark.ark_s4_type==='skill' ) {%>
+                                            <span id="bg_skill">
+                                                <%= ark.skill_sc_s4%>
+                                            </span>
+                                            <% }else{ %>
+                                                <span id="bg_skill" style="background-color: white;">
+                                                    <%= ark.skill_sc_s4%>
+                                                </span>
+                                                <%}%>
+                                </li>
+                                <li>
+                                    <% if(ark.ark_s5_type==='magic' ) {%>
+                                        <span id="bg_skill" style="background-color: blueviolet;">
+                                            <%= ark.skill_sc_s5%>
+                                        </span>
+                                        <%} else if(ark.ark_s5_type==='skill' ) {%>
+                                            <span id="bg_skill">
+                                                <%= ark.skill_sc_s5%>
+                                            </span>
+                                            <% }else{ %>
+                                                <span id="bg_skill" style="background-color: white;">
+                                                    <%= ark.skill_sc_s5%>
+                                                </span>
+                                                <%}%>
+                                </li>
+                                <li>
+                                    <% if(ark.ark_s6_type==='magic' ) {%>
+                                        <span id="bg_skill" style="background-color: blueviolet;">
+                                            <%= ark.skill_sc_s6%>
+                                        </span>
+                                        <%} else if(ark.ark_s6_type==='skill' ) {%>
+                                            <span id="bg_skill">
+                                                <%= ark.skill_sc_s6%>
+                                            </span>
+                                            <% }else{ %>
+                                                <span id="bg_skill" style="background-color: white;">
+                                                    <%= ark.skill_sc_s6%>
+                                                </span>
+                                                <%}%>
+                                </li>
+                            </ul>
+
+                        </td>
+                        <td>
+                            <ul>
+                                <li class="skillName">
+                                    <%if (ark.skill_name_s1===null) {%>
+                                        <span>
+                                            <br>
+                                        </span>
+                                        <%} else {%>
+                                            <span>
+                                                <button
+                                                    onclick="moveToSelected('<%= ark.skill_name_s1 %>', '<%= ark.skill_sc_s1%>')">+</button>
+                                                <%= ark.skill_name_s1%>
+                                            </span>
+                                            <% } %>
+                                </li>
+                                <li class="skillName">
+                                    <%if (ark.skill_name_s2===null) {%>
+                                        <span>
+                                            <br>
+                                        </span>
+                                        <%} else {%>
+                                            <span>
+                                                <button
+                                                    onclick="moveToSelected('<%= ark.skill_name_s2 %>', '<%= ark.skill_sc_s2%>')">+</button>
+                                                <%= ark.skill_name_s2%>
+                                            </span>
+                                            <% } %>
+                                </li>
+                                <li class="skillName">
+                                    <%if (ark.skill_name_s3===null) {%>
+                                        <span>
+                                            <br>
+                                        </span>
+                                        <%} else {%>
+                                            <span>
+                                                <button
+                                                    onclick="moveToSelected('<%= ark.skill_name_s3 %>', '<%= ark.skill_sc_s3%> ')">+</button>
+                                                <%= ark.skill_name_s3%>
+                                            </span>
+                                            <% } %>
+                                </li>
+                                <li class="skillName">
+                                    <%if (ark.skill_name_s4===null) {%>
+                                        <span>
+                                            <br>
+                                        </span>
+                                        <%} else {%>
+                                            <span>
+                                                <button
+                                                    onclick="moveToSelected('<%= ark.skill_name_s4 %>', '<%= ark.skill_sc_s4%>')">+</button>
+                                                <%= ark.skill_name_s4%>
+                                            </span>
+                                            <% } %>
+                                </li>
+                                <li class="skillName">
+                                    <%if (ark.skill_name_s5===null) {%>
+                                        <span>
+                                            <br>
+                                        </span>
+                                        <%} else {%>
+                                            <span>
+                                                <button
+                                                    onclick="moveToSelected('<%= ark.skill_name_s5 %> ', '<%= ark.skill_sc_s5%>')">+</button>
+                                                <%= ark.skill_name_s5%>
+                                            </span>
+                                            <% } %>
+                                </li>
+                                <li class="skillName">
+                                    <%if (ark.skill_name_s6===null) {%>
+                                        <span>
+                                            <br>
+                                        </span>
+                                        <%} else {%>
+                                            <span>
+                                                <button
+                                                    onclick="moveToSelected('<%= ark.skill_name_s6 %>', '<%= ark.skill_sc_s6%>')">+</button>
+                                                <%= ark.skill_name_s6%>
+                                            </span>
+                                            <% } %>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <% }); %>
+            </tbody>
+        </table>
+        <table id="selectedSkills">
+            <thead>
+                <tr>
+                    <th>技能/魔法</th>
+                </tr>
+
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>
